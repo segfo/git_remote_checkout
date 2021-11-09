@@ -6,7 +6,6 @@ use std::io::Write;
 fn main() {
     let arg = init_args();
     let workdir = env::current_dir().unwrap();
-    println!("{:?} / {}", workdir, arg.branch_name());
     exec_git(["fetch", "origin", arg.branch_name()].to_vec());
     exec_git(["checkout", arg.branch_name()].to_vec());
 }
