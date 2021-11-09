@@ -1,4 +1,3 @@
-use clap::{App, Arg, SubCommand};
 use std::process::Command;
 mod cmdargs;
 use cmdargs::*;
@@ -16,7 +15,7 @@ fn exec_git(git_args: Vec<&str>) {
     let cmd_output = Command::new("git")
         .args(&git_args)
         .output()
-        .expect("gitコマンド(fetch)が失敗しました");
+        .expect(&format!("gitコマンド({})が失敗しました", git_args[0]));
     std::io::stdout().write_all(&cmd_output.stdout).unwrap();
     std::io::stderr().write_all(&cmd_output.stderr).unwrap();
 }
